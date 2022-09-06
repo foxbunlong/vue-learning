@@ -6,6 +6,16 @@ const app = Vue.createApp({
       age: 0,
     };
   },
+  // Computed will aware of change of dependency (e.g. name)
+  computed: {
+    fullname() {
+      if (this.name === "") {
+        return "";
+      }
+      return this.name + " " + "Thay";
+    },
+  },
+  // Any method implemented in UI components will be re-called each time UI updated. To prevent it, use computed properties
   methods: {
     add(num) {
       this.counter = this.counter + num;

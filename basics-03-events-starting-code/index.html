@@ -22,8 +22,10 @@
       <button @click="reduce(5)">Reduce 5</button>
       <p v-once>Starting Counter: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
+      <!-- v-model 2 way binding -->
       <input type="text" v-model="name" />
       <p>Your name: {{ name }}</p>
+      <p>Full name: {{ fullname }}</p>
       <input type="text" v-on:input="setAge($event, ' yrs')" />
       <p>Your age: {{ age }}</p>
       <form @submit.prevent="submitForm">
