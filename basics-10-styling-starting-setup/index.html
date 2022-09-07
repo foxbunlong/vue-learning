@@ -19,9 +19,9 @@
     <section id="styling">
       <!-- :class="boxASelected ? 'demo active' : 'demo'" -->
       <!-- :class will be merged with class -->
-      <div class="demo" :class="boxAClasses" @click="selectA"></div>
-      <div class="demo" :class="boxBClasses" @click="selectB"></div>
-      <div class="demo" :class="boxCClasses" @click="selectC"></div>
+      <div :class="['demo', boxAClasses]" @click="selectA"></div>
+      <div :class="['demo', boxBClasses]" @click="selectB"></div>
+      <div :class="['demo', boxCClasses]" @click="selectC"></div>
     </section>
   </body>
 </html>
