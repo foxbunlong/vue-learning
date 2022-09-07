@@ -28,6 +28,7 @@
       <p>Full name: {{ fullname }}</p>
       <input type="text" v-on:input="setAge($event, ' yrs')" />
       <p>Your age: {{ age }}</p>
+      <p>Output user: {{ nameAndAge }}</p>
       <form @submit.prevent="submitForm">
         <input type="text" />
         <button>Signup</button>

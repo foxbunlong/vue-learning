@@ -4,9 +4,22 @@ const app = Vue.createApp({
       counter: 0,
       name: "",
       age: 0,
+      nameAndAge: "",
     };
   },
-  // Computed will aware of change of dependency (e.g. name)
+  // Watch will aware of change of one dependency only. Function name should be matched with data
+  // Best for http request when data changed or behind the scene work needed to do
+  watch: {
+    name(value) {
+      if (value === "") {
+        this.nameAndAge = "";
+      } else {
+        this.nameAndAge = value + " " + this.age;
+      }
+    },
+  },
+  // Computed will aware of change of all dependencies (e.g. name)
+  // This is more preferable and less code with many dependencies
   computed: {
     fullname() {
       if (this.name === "") {
