@@ -10,3 +10,9 @@ Vue CLI
 
 Plugins for VScode
 1. Vetur
+2. Prettier
+    -Add new config for Vue in settings:
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
