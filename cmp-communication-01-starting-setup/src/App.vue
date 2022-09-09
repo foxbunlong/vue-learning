@@ -8,13 +8,13 @@
         name="AAAAA"
         phone-number="0988997071"
         email-address="test@yahoo.com"
-        is-favorite="1"
+        :is-favorite="true"
       ></friend-contact>
       <friend-contact
         name="BBBBB"
         phone-number="0988997072"
         email-address="test2@yahoo.com"
-        is-favorite="0"
+        :is-favorite="false"
       ></friend-contact>
     </ul>
   </section>
