@@ -2,7 +2,7 @@
   <li>
     <h2>{{ friend.name }}</h2>
     <button @click="showHideDetails">
-      {‌{ detailsShowed ? 'Hide' : 'Show' }} Details
+      {{ detailsShowed ? "Hide" : "Show" }} Details
     </button>
     <ul v-if="detailsShowed">
       <li><strong>Phone: </strong>{{ friend.phone }}</li>
