@@ -1,43 +1,9 @@
-<template>
-  <section>
-    <header><h1>My friends</h1></header>
-    <ul>
-      <friend-contact></friend-contact>
-    </ul>
-  </section>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      friends: [
-        {
-          id: 1,
-          name: "Long Thay",
-          phone: "0988997071",
-          email: "test@yahoo.com",
-        },
-        {
-          id: 2,
-          name: "Hoang Phu",
-          phone: "0888687951",
-          email: "qwerty@yahoo.com",
-        },
-      ],
-    };
-  },
-};
-</script>
-
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 
 body {
@@ -95,4 +61,3 @@ header {
   border-color: #ec3169;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
 }
-</style>
