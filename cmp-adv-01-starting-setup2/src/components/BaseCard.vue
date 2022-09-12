@@ -1,16 +1,31 @@
 <template>
   <!-- Slot used for html template code -->
   <div>
-    <header><slot name="header"></slot></header>
+    <header v-if="$slots.header">
+      <slot name="header">
+        <!-- Default slot will be used if no header slot is added in screen -->
+        <h2>Default slot</h2>
+      </slot>
+    </header>
     <slot></slot>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    console.log("slots = ", this.$slots);
+  },
+};
 </script>
 
 <style scoped>
+/* Scoped styles - Vue add generated attribute to selector */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 div {
   margin: 2rem auto;
   max-width: 30rem;
