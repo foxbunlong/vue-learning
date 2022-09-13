@@ -12,6 +12,12 @@
       <!-- NOTE: Vue translate hyphenated props to camelCase props -->
       <p>{{ slotProps.anotherProps }}</p>
     </CourseGoal>
+    <button @click="setSelectedComponent('active-goal')">Active Goals</button>
+    <button @click="setSelectedComponent('manage-goal')">Manage Goals</button>
+    <!-- <ActiveGoal v-if="selectedComponent === 'active-goal'" />
+    <ManageGoal v-else /> -->
+    <!-- Vue component - Dynamic components -->
+    <component :is="selectedComponent"></component>
   </div>
 </template>
 
@@ -21,17 +27,34 @@ import BadgeList from "./components/BadgeList.vue";
 import UserInfo from "./components/UserInfo.vue";
 import CourseGoal from "./components/CourseGoals.vue";
 
+// Dynamic components
+import ActiveGoal from "./components/ActiveGoal.vue";
+import ManageGoal from "./components/ManageGoal.vue";
+
 export default {
   // Local component registration
-  components: { TheHeader, BadgeList, UserInfo, CourseGoal },
+  components: {
+    TheHeader,
+    BadgeList,
+    UserInfo,
+    CourseGoal,
+    ActiveGoal,
+    ManageGoal,
+  },
   data() {
     return {
+      selectedComponent: "active-goal",
       activeUser: {
         name: "Maximilian Schwarzmüller",
         description: "Site owner and admin",
         role: "admin",
       },
     };
+  },
+  methods: {
+    setSelectedComponent(cmp) {
+      this.selectedComponent = cmp;
+    },
   },
 };
 </script>
