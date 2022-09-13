@@ -17,7 +17,9 @@
     <!-- <ActiveGoal v-if="selectedComponent === 'active-goal'" />
     <ManageGoal v-else /> -->
     <!-- Vue component - Dynamic components -->
-    <component :is="selectedComponent"></component>
+    <keep-alive>
+      <component :is="selectedComponent"></component>
+    </keep-alive>
   </div>
 </template>
 
