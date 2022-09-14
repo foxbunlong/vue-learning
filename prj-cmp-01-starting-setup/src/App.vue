@@ -1,11 +1,13 @@
 <template>
+  <TheHeader title="Homepage"></TheHeader>
   <StoredResource :resources="resources" />
 </template>
 
 <script>
 import StoredResource from './components/resources/StoredResource.vue';
+import TheHeader from './components/layouts/TheHeader.vue';
 export default {
-  components: { StoredResource },
+  components: { StoredResource, TheHeader },
   data() {
     return {
       resources: [
