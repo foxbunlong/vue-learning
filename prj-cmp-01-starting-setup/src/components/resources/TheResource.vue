@@ -40,6 +40,7 @@ export default {
     return {
       resources: this.resources,
       addResource: this.addResource,
+      removeResource: this.removeResource,
     };
   },
   computed: {
@@ -62,6 +63,12 @@ export default {
         link,
       });
       this.selectedTab = 'stored-resource';
+    },
+    removeResource(id) {
+      const resIndex = this.resources.findIndex((e) => e.id === id);
+      this.resources.splice(resIndex, 1);
+      // This approach replace with brand new array which results in UI not reloaded
+      // this.resources = this.resources.filter((e) => e.id !== id);
     },
   },
 };
