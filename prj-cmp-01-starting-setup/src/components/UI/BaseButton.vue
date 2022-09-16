@@ -1,7 +1,7 @@
 <!-- When add props or event to custom component, it will fall through to the root component template.
  In this case is button. -->
 <template>
-  <button :type="type" :class="mode">
+  <button :class="mode">
     <slot></slot>
   </button>
   <!-- <base-button mode="flat"></base-button> -->
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  props: ['type', 'mode'],
+  props: ['mode'],
 };
 </script>
 
