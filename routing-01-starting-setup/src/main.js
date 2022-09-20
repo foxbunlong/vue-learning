@@ -11,6 +11,7 @@ const router = createRouter({
     { path: '/teams', component: TeamList },
     { path: '/users', component: UsersList },
   ],
+  // When set linkActiveClass: 'active' need to change in TheNavigation.vue
 });
 
 const app = createApp(App);

@@ -52,8 +52,10 @@ a {
   display: inline-block;
 }
 
+/* a.router-link-active predefined by vue */
 a:hover,
-a:active {
+a:active,
+a.router-link-active {
   color: #f1a80a;
   border-color: #f1a80a;
   background-color: #1a037e;
