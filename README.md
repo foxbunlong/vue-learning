@@ -16,3 +16,7 @@ Plugins for VScode
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
     },
+
+Routing
+1. Install package
+    yarn add vue-router
