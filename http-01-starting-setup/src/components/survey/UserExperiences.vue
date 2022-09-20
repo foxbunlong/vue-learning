@@ -14,6 +14,7 @@
           :rating="result.rating"
         ></survey-result>
       </ul>
+      <p v-else-if="!isLoading && error">{{ error }}</p>
       <p v-else>No data found</p>
     </base-card>
   </section>
@@ -31,11 +32,14 @@ export default {
     return {
       isLoading: false,
       results: [],
+      error: null,
     };
   },
   methods: {
     getData() {
+      this.error = null;
       this.isLoading = true;
+      // Fail case: 'https://vue-demo-46c9e-default-rtdb.asia-southeast1.firebasedatabase.app/surveys'
       fetch(
         'https://vue-demo-46c9e-default-rtdb.asia-southeast1.firebasedatabase.app/surveys.json'
       )
@@ -57,6 +61,11 @@ export default {
           }
           this.results = results;
           this.isLoading = false;
+        })
+        .catch((e) => {
+          this.isLoading = false;
+          console.log(e);
+          this.error = 'Failed to fetch data - please try again later';
         });
     },
   },
