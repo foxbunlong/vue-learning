@@ -1,6 +1,12 @@
 <template>
+  <button @click="navigateToTeams">Confirm</button>
   <ul>
-    <user-item v-for="user in users" :key="user.id" :name="user.fullName" :role="user.role"></user-item>
+    <user-item
+      v-for="user in users"
+      :key="user.id"
+      :name="user.fullName"
+      :role="user.role"
+    ></user-item>
   </ul>
 </template>
 
@@ -12,6 +18,14 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  methods: {
+    navigateToTeams() {
+      // $router provided by vue-router
+      this.$router.push('/teams');
+      // this.$router.back();
+      // this.$router.forward();
+    },
+  },
 };
 </script>
 
