@@ -5,7 +5,8 @@
       <div>
         <base-button @click="getData">Load Submitted Experiences</base-button>
       </div>
-      <ul>
+      <p v-if="isLoading">Loading...</p>
+      <ul v-else-if="!isLoading && results && results.length">
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -13,6 +14,7 @@
           :rating="result.rating"
         ></survey-result>
       </ul>
+      <p v-else>No data found</p>
     </base-card>
   </section>
 </template>
@@ -27,11 +29,13 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       results: [],
     };
   },
   methods: {
     getData() {
+      this.isLoading = true;
       fetch(
         'https://vue-demo-46c9e-default-rtdb.asia-southeast1.firebasedatabase.app/surveys.json'
       )
@@ -52,6 +56,7 @@ export default {
             });
           }
           this.results = results;
+          this.isLoading = false;
         });
     },
   },
