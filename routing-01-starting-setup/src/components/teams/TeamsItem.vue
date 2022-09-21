@@ -11,11 +11,14 @@ export default {
   props: ['id', 'name', 'memberCount'],
   computed: {
     urlLink() {
-      // return '/teams/' + this.id;
+      // return '/teams/' + this.id + '?sort=asc';
       return {
         // path: '/teams/' + this.id,
         name: 'team-members',
         params: { teamId: this.id },
+        query: {
+          sort: 'asc', // Example: http://192.168.50.28:8080/teams/t1?sort=asc
+        },
       };
     },
   },
