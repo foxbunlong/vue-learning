@@ -33,6 +33,25 @@ const router = createRouter({
     { path: '/:notFound(.*)', component: Page404 }, // Dynamic segment, come last in this routes array
   ],
   // When set linkActiveClass: 'active' need to change in TheNavigation.vue
+
+  scrollBehavior(_, _2, savedPosition) {
+    // scrollBehavior(to, from, savedPosition) {
+    // console.log(to, from, savedPosition);
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return {
+      left: 0,
+      top: 0,
+    };
+  },
+});
+
+router.beforeEach((to, from, next) => {
+  // Called everytime navigate from one page to another
+  console.log(to, from);
+  next(); // next(false); - prevent to load page
+  // next('/route'); // next({name: 'team-members', params: {teamId: 't2'}})
 });
 
 const app = createApp(App);
