@@ -14,10 +14,16 @@ const router = createRouter({
     { path: '/', redirect: '/teams' }, // 1st load page will execute the rediction to team list
     // { path: '/teams', component: TeamList, alias: '/' }, // 1st load page will load the team
     {
+      name: 'teams',
       path: '/teams',
       component: TeamList,
       children: [
-        { path: ':teamId', component: TeamMembers, props: true }, // props: true - Dynamic params should be passed into component as props, not just $ route properties
+        {
+          name: 'team-members',
+          path: ':teamId',
+          component: TeamMembers,
+          props: true,
+        }, // props: true - Dynamic params should be passed into component as props, not just $ route properties
       ],
     },
     // { path: '/teams/new', component: TeamList },
