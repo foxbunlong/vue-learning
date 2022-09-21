@@ -4,7 +4,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 import Page404 from './components/nav/Page404.vue';
 import TeamMembers from './components/teams/TeamMembers.vue';
+import TeamsFooter from './components/teams/TeamsFooter.vue';
 import TeamList from './components/teams/TeamsList.vue';
+import UsersFooter from './components/users/UsersFooter.vue';
 import UsersList from './components/users/UsersList.vue';
 
 const router = createRouter({
@@ -16,7 +18,7 @@ const router = createRouter({
     {
       name: 'teams',
       path: '/teams',
-      component: TeamList,
+      components: { default: TeamList, footer: TeamsFooter },
       children: [
         {
           name: 'team-members',
@@ -27,7 +29,7 @@ const router = createRouter({
       ],
     },
     // { path: '/teams/new', component: TeamList },
-    { path: '/users', component: UsersList },
+    { path: '/users', components: { default: UsersList, footer: UsersFooter } },
     { path: '/:notFound(.*)', component: Page404 }, // Dynamic segment, come last in this routes array
   ],
   // When set linkActiveClass: 'active' need to change in TheNavigation.vue
