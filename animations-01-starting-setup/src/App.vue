@@ -4,10 +4,10 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition><p v-if="isTextShowed">AAAAAAAA</p></transition>
+    <transition name="para"><p v-if="isTextShowed">AAAAAAAA</p></transition>
     <button @click="showHideText">Toggle paragraph</button>
   </div>
-  <base-modal @close="hideDialog" v-if="dialogIsVisible">
+  <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
   </base-modal>
@@ -87,18 +87,47 @@ button:active {
 
 /* Vue specific */
 
-.v-enter-from {
+.para-enter-from {
   opacity: 0;
   transform: translateY(-20px);
 }
 
-.v-enter-active {
+.para-enter-active {
   transition: all 0.3s ease-out;
 }
 
-.v-enter-to {
+.para-enter-to {
   opacity: 1;
   transform: translateY(0);
+}
+
+.para-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.para-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.para-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.v-enter-from {
+  /* opacity: 0;
+  transform: translateY(-20px); */
+}
+
+.v-enter-active {
+  /* transition: all 0.3s ease-out; */
+  animation: slide-fade 0.3s ease-out;
+}
+
+.v-enter-to {
+  /* opacity: 1;
+  transform: translateY(0); */
 }
 
 .v-leave-from {
