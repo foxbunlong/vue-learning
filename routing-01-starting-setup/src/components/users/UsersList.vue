@@ -1,5 +1,6 @@
 <template>
   <button @click="navigateToTeams">Confirm</button>
+  <button @click="save">Save</button>
   <ul>
     <user-item
       v-for="user in users"
@@ -18,6 +19,11 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  data() {
+    return {
+      isSaved: false,
+    };
+  },
   methods: {
     navigateToTeams() {
       // $router provided by vue-router
@@ -25,6 +31,31 @@ export default {
       // this.$router.back();
       // this.$router.forward();
     },
+    save() {
+      this.isSaved = true;
+    },
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log('User list comp beforeRouteEnter');
+    console.log(to, from);
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    // Called before leave this page, can override back button
+    // Ideal to execute save function
+    console.log('User list comp beforeRouteLeave');
+    console.log(to, from);
+    if (this.isSaved) {
+      next();
+    } else {
+      const userWannaLeave = confirm('Not saved yet! Please check again');
+      next(userWannaLeave);
+    }
+  },
+  unmounted() {
+    console.log('unmounted');
+    // Called after Global afterEach
+    // No way to cancel navigation
   },
 };
 </script>

@@ -60,6 +60,13 @@ export default {
     this.loadTeamMembers(this.teamId);
     console.log('query', this.$route.query);
   },
+  beforeRouteUpdate(to, from, next) {
+    // Called before this component is reused with new data
+    console.log('Team members Cmp beforeRouteUpdate');
+    console.log(to, from);
+    // this.loadTeamMembers(to.params.teamId); // Alternative for watch teamId below
+    next();
+  },
   watch: {
     // $route(newRoute) {
     //   this.loadTeamMembers(newRoute);

@@ -29,7 +29,15 @@ const router = createRouter({
       ],
     },
     // { path: '/teams/new', component: TeamList },
-    { path: '/users', components: { default: UsersList, footer: UsersFooter } },
+    {
+      path: '/users',
+      components: { default: UsersList, footer: UsersFooter },
+      beforeEnter(to, from, next) {
+        console.log('users beforeEnter');
+        console.log(to, from);
+        next();
+      },
+    },
     { path: '/:notFound(.*)', component: Page404 }, // Dynamic segment, come last in this routes array
   ],
   // When set linkActiveClass: 'active' need to change in TheNavigation.vue
@@ -49,9 +57,17 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // Called everytime navigate from one page to another
+  console.log('Global beforeEach');
   console.log(to, from);
   next(); // next(false); - prevent to load page
   // next('/route'); // next({name: 'team-members', params: {teamId: 't2'}})
+});
+
+router.afterEach((to, from) => {
+  // Called after each navigation completed
+  // Nice to sending analytics to server
+  console.log('Global afterEach');
+  console.log(to, from);
 });
 
 const app = createApp(App);
