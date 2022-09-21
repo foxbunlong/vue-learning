@@ -34,5 +34,18 @@ dialog {
   background-color: white;
   z-index: 100;
   border: none;
+  animation: modal-animate 0.3s ease-out forwards;
+}
+
+/* from to - short hand for 0% and 100% */
+@keyframes modal-animate {
+  from {
+    transform: translateY(1vw) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 </style>
