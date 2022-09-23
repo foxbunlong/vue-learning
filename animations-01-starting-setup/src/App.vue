@@ -1,11 +1,13 @@
 <template>
+  <div class="container"><UsersList /></div>
   <div class="container">
     <div class="block" :class="{ animate: isAnimated }"></div>
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
+    <!-- :css="false" - this transition not use css for animation -->
     <transition
-      name="para"
+      :css="false"
       @before-enter="beforeEnterAnim"
       @enter="enterAnim"
       @after-enter="afterEnterAnim"
@@ -37,7 +39,9 @@
 </template>
 
 <script>
+import UsersList from './components/UsersList.vue';
 export default {
+  components: { UsersList },
   data() {
     return {
       dialogIsVisible: false,
