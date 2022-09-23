@@ -4,8 +4,24 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition name="para"><p v-if="isTextShowed">AAAAAAAA</p></transition>
+    <transition
+      name="para"
+      @before-enter="beforeEnterAnim"
+      @enter="enterAnim"
+      @after-enter="afterEnterAnim"
+      @before-leave="beforeLeaveAnim"
+      @leave="leaveAnim"
+      @after-leave="afterLeaveAnim"
+      ><p v-if="isTextShowed">AAAAAAAA</p></transition
+    >
     <button @click="showHideText">Toggle paragraph</button>
+  </div>
+  <div class="container">
+    <!-- mode out-in kind of wait for the last animation to be finished then call next animation -->
+    <transition name="fade-button" mode="out-in">
+      <button @click="showUser" v-if="!isUserShowed">Show users</button>
+      <button @click="hideUser" v-else>Hide users</button>
+    </transition>
   </div>
   <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
@@ -19,9 +35,29 @@
 <script>
 export default {
   data() {
-    return { dialogIsVisible: false, isAnimated: false, isTextShowed: false };
+    return {
+      dialogIsVisible: false,
+      isAnimated: false,
+      isTextShowed: false,
+      isUserShowed: false,
+    };
   },
   methods: {
+    beforeEnterAnim(el) {
+      console.log('beforeEnterAnim', el);
+    },
+    enterAnim(el) {
+      console.log('enterAnim', el);
+    },
+    beforeLeaveAnim(el) {
+      console.log('beforeLeaveAnim', el);
+    },
+    leaveAnim(el) {
+      console.log('leaveAnim', el);
+    },
+    afterLeaveAnim(el) {
+      console.log('afterLeaveAnim', el);
+    },
     showDialog() {
       this.dialogIsVisible = true;
     },
@@ -33,6 +69,12 @@ export default {
     },
     showHideText() {
       this.isTextShowed = !this.isTextShowed;
+    },
+    showUser() {
+      this.isUserShowed = true;
+    },
+    hideUser() {
+      this.isUserShowed = false;
     },
   },
 };
@@ -142,6 +184,24 @@ button:active {
 .v-leave-to {
   opacity: 0;
   transform: translateY(20px);
+}
+
+.fade-button-enter-from,
+.fade-button-leave-to {
+  opacity: 0;
+}
+
+.fade-button-enter-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.fade-button-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+.fade-button-enter-to,
+.fade-button-leave-from {
+  opacity: 1;
 }
 
 @keyframes slide-fade {
