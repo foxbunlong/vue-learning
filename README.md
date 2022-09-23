@@ -20,3 +20,6 @@ Plugins for VScode
 Routing
 1. Install package
     yarn add vue-router
+
+Javascript animation library
+1. Greensock https://greensock.com/

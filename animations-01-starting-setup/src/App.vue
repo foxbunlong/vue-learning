@@ -12,8 +12,12 @@
       @before-leave="beforeLeaveAnim"
       @leave="leaveAnim"
       @after-leave="afterLeaveAnim"
-      ><p v-if="isTextShowed">AAAAAAAA</p></transition
+      @enter-cancelled="enterAnimCancelled"
+      @leave-cancelled="leaveAnimCancelled"
     >
+      <!-- Change to v-show fix repeating click -->
+      <p v-show="isTextShowed">AAAAAAAA</p>
+    </transition>
     <button @click="showHideText">Toggle paragraph</button>
   </div>
   <div class="container">
@@ -40,20 +44,54 @@ export default {
       isAnimated: false,
       isTextShowed: false,
       isUserShowed: false,
+      enterInterval: null,
+      leaveInterval: null,
     };
   },
   methods: {
+    enterAnimCancelled(el) {
+      console.log('enterAnimCancelled', el);
+      clearInterval(this.enterInterval);
+    },
+    leaveAnimCancelled(el) {
+      console.log('leaveAnimCancelled', el);
+      clearInterval(this.leaveInterval);
+    },
     beforeEnterAnim(el) {
       console.log('beforeEnterAnim', el);
+      el.style.opacity = 0; // vanilla-js
     },
-    enterAnim(el) {
+    enterAnim(el, done) {
+      // 2nd variable is a function to notify this anim is done
       console.log('enterAnim', el);
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      }, 20);
+    },
+    afterEnterAnim(el) {
+      console.log('afterEnterAnim', el);
     },
     beforeLeaveAnim(el) {
       console.log('beforeLeaveAnim', el);
+      el.style.opacity = 1;
     },
-    leaveAnim(el) {
+    leaveAnim(el, done) {
       console.log('leaveAnim', el);
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 20);
     },
     afterLeaveAnim(el) {
       console.log('afterLeaveAnim', el);
@@ -128,34 +166,6 @@ button:active {
 }
 
 /* Vue specific */
-
-.para-enter-from {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.para-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.para-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.para-leave-from {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.para-leave-active {
-  transition: all 0.3s ease-in;
-}
-
-.para-leave-to {
-  opacity: 0;
-  transform: translateY(20px);
-}
 
 .v-enter-from {
   /* opacity: 0;
