@@ -23,5 +23,9 @@ Routing
 2. Animated route
     yarn add vue-router
 
+State management
+1. Install VueX
+    yarn add vuex@next
+
 Javascript animation library
 1. Greensock https://greensock.com/
