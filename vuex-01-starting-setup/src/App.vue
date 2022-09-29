@@ -23,9 +23,16 @@ export default {
   methods: {
     add(num) {
       // this.$store.state.counter += num;
+
       // this.$store.commit('increment', num);
-      this.$store.commit({
-        type: 'increment',
+
+      // this.$store.commit({
+      //   type: 'increment',
+      //   value: num,
+      // });
+
+      this.$store.dispatch({
+        type: 'increase',
         value: num,
       });
     },

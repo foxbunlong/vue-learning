@@ -7,7 +7,9 @@ export default {
   methods: {
     add(num) {
       // 1st args = name of mutation wanna perform
-      this.$store.commit('increment', { value: num });
+      // this.$store.commit('increment', { value: num });
+
+      this.$store.dispatch('increment', { value: num });
     },
   },
 };
