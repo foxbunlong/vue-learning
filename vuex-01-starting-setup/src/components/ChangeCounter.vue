@@ -14,7 +14,10 @@ export default {
     // },
 
     // ...mapActions(['increment', 'increase']), // emerge with actions
-    ...mapActions({ increment: 'increment', increase: 'increase' }), // emerge with actions
+    ...mapActions('counterModule', {
+      increment: 'increment',
+      increase: 'increase',
+    }), // emerge with actions
   },
 };
 </script>

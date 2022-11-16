@@ -10,7 +10,7 @@ export default {
     // counter() {
     //   return this.$store.getters.finalCounter;
     // },
-    ...mapGetters(['finalCounter']), // emerge with computed
+    ...mapGetters('counterModule', ['finalCounter']), // emerge with computed
   },
 };
 </script>

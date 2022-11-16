@@ -40,7 +40,7 @@ export default {
       // });
 
       this.$store.dispatch({
-        type: 'increase',
+        type: 'counterModule/increase',
         value: num,
       });
     },
