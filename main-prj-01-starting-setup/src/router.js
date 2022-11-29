@@ -15,6 +15,7 @@ const router = createRouter({
     {
       path: '/coaches/:id',
       component: CoachDetail,
+      props: true, // make sure dynamic value is passed as props (e.g. props.id)
       children: [{ path: 'contact', component: ContactCoach }],
     },
     { path: '/register', component: CoachRegister },
