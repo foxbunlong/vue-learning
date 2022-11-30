@@ -37,6 +37,7 @@
 
 <script>
 export default {
+  emits: ['save-data'],
   data() {
     return {
       firstName: '',
@@ -55,8 +56,7 @@ export default {
         rate: this.hourlyRate,
         areas: this.areas,
       };
-
-      console.log(formData);
+      this.$emit('save-data', formData);
     },
   },
 };
