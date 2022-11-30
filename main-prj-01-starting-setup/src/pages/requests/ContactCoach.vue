@@ -1,3 +1,92 @@
 <template>
-  <section>CONTACT</section>
+  <form @submit.prevent="submitForm">
+    <div class="form-control">
+      <label for="email">Your email</label>
+      <input type="email" id="email" v-model.trim="email" />
+    </div>
+    <div class="form-control">
+      <label for="message">Your message</label>
+      <textarea rows="5" id="message" v-model.trim="message" />
+    </div>
+    <p class="errors" v-if="!formIsValid">
+      Fields should not be empty and valid email must be provided
+    </p>
+    <div class="actions">
+      <base-button>Send</base-button>
+    </div>
+  </form>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      email: '',
+      message: '',
+      formIsValid: true,
+    };
+  },
+  methods: {
+    submitForm() {
+      this.formIsValid = true;
+
+      if (this.message === '' || !this.email.includes('@')) {
+        this.formIsValid = false;
+        return;
+      }
+
+      this.$store.dispatch('requests/contactCoach', {
+        email: this.email,
+        message: this.message,
+        coachId: this.$route.id,
+      });
+
+      this.$router.replace('/coaches');
+    },
+  },
+};
+</script>
+
+<style scoped>
+form {
+  margin: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.form-control {
+  margin: 0.5rem 0;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  font: inherit;
+  border: 1px solid #ccc;
+  padding: 0.15rem;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #3d008d;
+  background-color: #faf6ff;
+  outline: none;
+}
+
+.errors {
+  font-weight: bold;
+  color: red;
+}
+
+.actions {
+  text-align: center;
+}
+</style>
