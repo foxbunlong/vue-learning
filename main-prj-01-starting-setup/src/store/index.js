@@ -1,3 +1,4 @@
+import MD5 from 'crypto-js/md5';
 import { createStore } from 'vuex';
 
 import coachesModule from './modules/coaches';
@@ -7,7 +8,7 @@ const store = createStore({
   modules: { coaches: coachesModule, requests: requestsModule },
   state() {
     return {
-      userId: new Date().toISOString(),
+      userId: MD5(new Date().toISOString()),
     };
   },
   getters: {
