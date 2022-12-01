@@ -35,7 +35,9 @@ export default {
     );
 
     if (!resp.ok) {
-      console.log(resp.text);
+      console.log(resp);
+      const error = new Error(resp.statusText || 'Failed to fetch!');
+      throw error;
     }
 
     const data = await resp.json();
