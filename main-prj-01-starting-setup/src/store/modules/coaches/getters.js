@@ -11,4 +11,11 @@ export default {
     const userId = rootGetters.userId;
     return coaches.some((coach) => coach.id === userId); // built in function if coaches full-filled some criterias (validating)
   },
+  shoudFetch(state) {
+    if (!state.lastFetch) {
+      return true;
+    }
+    const currenttime = new Date().getTime();
+    return currenttime - state.lastFetch > 60000;
+  },
 };
