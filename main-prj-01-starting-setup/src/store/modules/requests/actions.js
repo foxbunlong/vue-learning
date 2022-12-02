@@ -28,9 +28,10 @@ export default {
   },
   async fetchRequests(context) {
     // const coachId = context.rootGetters.userId;
-    const coachId = 'd3c5acb06d1763d1fa46c80e1c2f8bc9';
+    const coachId = context.rootGetters.userId;
+    const token = context.rootGetters.token;
     const resp = await fetch(
-      `https://vue-demo-46c9e-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json`
+      `https://vue-demo-46c9e-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json?auth=${token}`
     );
     if (!resp.ok) {
       const error = new Error(
