@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
+import UserAuth from './pages/auth/UserAuth.vue';
 import CoachDetail from './pages/coaches/CoachDetail.vue';
 import CoachesList from './pages/coaches/CoachesList.vue';
 import CoachRegister from './pages/coaches/CoachRegister.vue';
@@ -20,6 +21,7 @@ const router = createRouter({
     },
     { path: '/register', component: CoachRegister },
     { path: '/requests', component: RequestReceive },
+    { path: '/auth', component: UserAuth },
     { path: '/:notFound(.*)', component: NotFound },
   ],
 });
