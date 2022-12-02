@@ -8,6 +8,7 @@ export default {
       userId: null,
       token: null,
       tokenExpiration: null,
+      onAutoLogout: false,
     };
   },
   mutations,
