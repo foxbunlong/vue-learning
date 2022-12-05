@@ -2,24 +2,30 @@
   <section class="container">
     <h2>{{ user.userName }}</h2>
     <h3>{{ user.age }}</h3>
+
+    <h2>{{ userName }}</h2>
+    <h3>{{ age }}</h3>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+// To check object is reactive or not, import {isRef, isReactive}
+import { reactive, toRefs } from 'vue'; // reactive can only work with object
 
-// const userName = ref('Long Thay'); // Reactive value
-// const age = ref(34);
-const user = ref({
+// Entire object is reactive but value inside it is not reactive
+const user = reactive({
   userName: 'Long Thay',
   age: 34,
 });
 
+// toRefs turns username and age to reactive
+const userRefs = toRefs(user);
+const userName = userRefs.userName; // Now reactive
+const age = userRefs.age; // Now reactive
+
 setTimeout(() => {
-  // userName.value = 'After timeout'; // Reactive value can only be set by using .value
-  // age.value = 30;
-  user.value.userName = 'After timeout'; // Reactive value can only be set by using .value
-  user.value.age = 30;
+  user.userName = 'After timeout'; // Reactive value can only be set by using .value
+  user.age = 30;
 }, 2000);
 </script>
 
