@@ -29,3 +29,8 @@ State management
 
 Javascript animation library
 1. Greensock https://greensock.com/
+
+Deploy to Firebase
+1. Setup as required on Firebase
+2. Init project: Configure as a single-page app -> y (this will re init the routing in client site)
+3. No overriding the index.html
