@@ -5,6 +5,8 @@
 
     <h2>{{ userName }}</h2>
     <h3>{{ age }}</h3>
+
+    <button @click="setNewData">Change age</button>
   </section>
 </template>
 
@@ -23,10 +25,10 @@ const userRefs = toRefs(user);
 const userName = userRefs.userName; // Now reactive
 const age = userRefs.age; // Now reactive
 
-setTimeout(() => {
-  user.userName = 'After timeout'; // Reactive value can only be set by using .value
+const setNewData = () => {
+  user.userName = 'After changed'; // Reactive value can only be set by using .value
   user.age = 30;
-}, 2000);
+};
 </script>
 
 <style>
