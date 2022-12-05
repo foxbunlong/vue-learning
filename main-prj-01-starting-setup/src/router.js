@@ -9,6 +9,27 @@ import ContactCoach from './pages/requests/ContactCoach.vue';
 import RequestReceive from './pages/requests/RequestReceive.vue';
 import store from './store';
 
+// defineAsyncComponent is NOT recommended for routing
+// const CoachDetail = defineAsyncComponent(() =>
+//   import('./pages/coaches/CoachDetail.vue')
+// );
+
+// const CoachRegister = defineAsyncComponent(() =>
+//   import('./pages/coaches/CoachRegister.vue')
+// );
+
+// const ContactCoach = defineAsyncComponent(() =>
+//   import('./pages/requests/ContactCoach.vue')
+// );
+
+// const RequestReceive = defineAsyncComponent(() =>
+//   import('./pages/requests/RequestReceive.vue')
+// );
+
+// const UserAuth = defineAsyncComponent(() =>
+//   import('./pages/auth/UserAuth.vue')
+// );
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
