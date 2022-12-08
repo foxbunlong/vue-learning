@@ -9,8 +9,9 @@
     <button @click="setNewData">Change age</button>
     <div>
       <h2>{{ fullName }}</h2>
-      <input type="text" placeholder="First name" @input="setFirstName" />
-      <input type="text" placeholder="Last name" @input="setLastName" />
+      <!-- 2-way binding is working with ref -->
+      <input type="text" placeholder="First name" v-model="firstName" />
+      <input type="text" placeholder="Last name" v-model="lastName" />
     </div>
   </section>
 </template>
@@ -38,14 +39,6 @@ const setNewData = () => {
 // Computed properties > Computed function
 const firstName = ref('');
 const lastName = ref('');
-
-const setFirstName = (event) => {
-  firstName.value = event.target.value;
-};
-
-const setLastName = (event) => {
-  lastName.value = event.target.value;
-};
 
 // Computed ref is readonly
 const fullName = computed(() => {
