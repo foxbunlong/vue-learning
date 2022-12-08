@@ -18,7 +18,7 @@
 
 <script setup>
 // To check object is reactive or not, import {isRef, isReactive}
-import { reactive, toRefs, ref, computed } from 'vue'; // reactive can only work with object
+import { reactive, toRefs, ref, computed, watch } from 'vue'; // reactive can only work with object
 
 // Entire object is reactive but value inside it is not reactive
 const user = reactive({
@@ -43,6 +43,15 @@ const lastName = ref('');
 // Computed ref is readonly
 const fullName = computed(() => {
   return firstName.value + ' ' + lastName.value;
+});
+
+// Can watch single var or multible var
+// watch(age, (newVal, oldVal) => {
+//   console.log(oldVal, ' => ', newVal);
+// });
+
+watch([age, fullName], (newVals, oldVals) => {
+  console.log(oldVals, ' => ', newVals);
 });
 </script>
 
