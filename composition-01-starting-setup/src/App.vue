@@ -21,7 +21,7 @@
 
 <script setup>
 // To check object is reactive or not, import {isRef, isReactive}
-import { reactive, toRefs, ref, computed, watch } from 'vue'; // reactive can only work with object
+import { reactive, toRefs, ref, computed, watch, provide } from 'vue'; // reactive can only work with object
 import UserData from './components/UserData.vue';
 
 // Entire object is reactive but value inside it is not reactive
@@ -63,6 +63,8 @@ const changeLastName = () => {
   console.log(lastNameInput);
   lastName.value = lastNameInput.value.value;
 };
+
+provide('userAge', age);
 </script>
 
 <style>

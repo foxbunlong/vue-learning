@@ -9,7 +9,9 @@
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed, defineProps, inject } from 'vue';
+
+const age = inject('userAge');
 
 const props = defineProps({
   firstName: {
@@ -20,10 +22,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  age: {
-    type: Number,
-    default: 0,
-  },
+  //   age: {
+  //     type: Number,
+  //     default: 0,
+  //   },
 });
 
 const userName = computed(() => {
