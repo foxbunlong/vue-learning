@@ -7,12 +7,17 @@
     <h3>{{ age }}</h3>
 
     <button @click="setNewData">Change age</button>
+    <div>
+      <h2>{{ fullName }}</h2>
+      <input type="text" placeholder="First name" @input="setFirstName" />
+      <input type="text" placeholder="Last name" @input="setLastName" />
+    </div>
   </section>
 </template>
 
 <script setup>
 // To check object is reactive or not, import {isRef, isReactive}
-import { reactive, toRefs } from 'vue'; // reactive can only work with object
+import { reactive, toRefs, ref, computed } from 'vue'; // reactive can only work with object
 
 // Entire object is reactive but value inside it is not reactive
 const user = reactive({
@@ -29,6 +34,23 @@ const setNewData = () => {
   user.userName = 'After changed'; // Reactive value can only be set by using .value
   user.age = 30;
 };
+
+// Computed properties > Computed function
+const firstName = ref('');
+const lastName = ref('');
+
+const setFirstName = (event) => {
+  firstName.value = event.target.value;
+};
+
+const setLastName = (event) => {
+  lastName.value = event.target.value;
+};
+
+// Computed ref is readonly
+const fullName = computed(() => {
+  return firstName.value + ' ' + lastName.value;
+});
 </script>
 
 <style>
