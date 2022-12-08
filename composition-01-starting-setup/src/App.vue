@@ -1,5 +1,7 @@
 <template>
   <section class="container">
+    <UserData :firstName="firstName" :lastName="lastName" :age="user.age" />
+
     <h2>{{ user.userName }}</h2>
     <h3>{{ user.age }}</h3>
 
@@ -11,7 +13,8 @@
       <h2>{{ fullName }}</h2>
       <!-- 2-way binding is working with ref -->
       <input type="text" placeholder="First name" v-model="firstName" />
-      <input type="text" placeholder="Last name" v-model="lastName" />
+      <input type="text" placeholder="Last name" ref="lastNameInput" />
+      <button @click="changeLastName">Change last name</button>
     </div>
   </section>
 </template>
@@ -19,6 +22,7 @@
 <script setup>
 // To check object is reactive or not, import {isRef, isReactive}
 import { reactive, toRefs, ref, computed, watch } from 'vue'; // reactive can only work with object
+import UserData from './components/UserData.vue';
 
 // Entire object is reactive but value inside it is not reactive
 const user = reactive({
@@ -39,6 +43,7 @@ const setNewData = () => {
 // Computed properties > Computed function
 const firstName = ref('');
 const lastName = ref('');
+const lastNameInput = ref(null);
 
 // Computed ref is readonly
 const fullName = computed(() => {
@@ -53,6 +58,11 @@ const fullName = computed(() => {
 watch([age, fullName], (newVals, oldVals) => {
   console.log(oldVals, ' => ', newVals);
 });
+
+const changeLastName = () => {
+  console.log(lastNameInput);
+  lastName.value = lastNameInput.value.value;
+};
 </script>
 
 <style>

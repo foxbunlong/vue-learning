@@ -1,0 +1,32 @@
+<template>
+  <div>
+    From UserData
+    <h2>{{ userName }}</h2>
+    <h3>{{ age }}</h3>
+    <slot></slot>
+    END OF From UserData
+  </div>
+</template>
+
+<script setup>
+import { computed, defineProps } from 'vue';
+
+const props = defineProps({
+  firstName: {
+    type: String,
+    default: '',
+  },
+  lastName: {
+    type: String,
+    default: '',
+  },
+  age: {
+    type: Number,
+    default: 0,
+  },
+});
+
+const userName = computed(() => {
+  return props.firstName + ' ' + props.lastName;
+});
+</script>
