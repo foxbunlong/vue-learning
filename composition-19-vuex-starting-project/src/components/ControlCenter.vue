@@ -2,12 +2,12 @@
   <button @click="inc">Increment</button>
 </template>
 
-<script>
-export default {
-  setup() {
-    function inc() {}
+<script setup>
+import { useStore } from 'vuex';
 
-    return { inc };
-  },
-};
+const store = useStore();
+
+function inc() {
+  store.dispatch('increment');
+}
 </script>
