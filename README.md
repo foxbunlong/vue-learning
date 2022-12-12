@@ -34,3 +34,9 @@ Deploy to Firebase
 1. Setup as required on Firebase
 2. Init project: Configure as a single-page app -> y (this will re init the routing in client site)
 3. No overriding the index.html
+
+===== ADVANCED =====
+Mixin
+- Mixin class is in javascript files
+- Mixin now can be shared between components. No need to import child class in all components
+- Mixin data variables can be overriden by add the same variables in target components
